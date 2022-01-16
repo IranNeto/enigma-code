@@ -1,6 +1,6 @@
 package org.iranneto;
 
-import org.iranneto.part.Rotor;
+import org.iranneto.parts.Rotor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,9 +12,5 @@ public class Enigma {
 
     public Enigma(){
         IntStream.range(0,3).forEach(loop -> rotors.add(new Rotor()));
-    }
-
-    public static void main(String[] args) {
-
     }
 }

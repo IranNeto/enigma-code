@@ -7,7 +7,6 @@ class EnigmaTest extends Specification {
     def "Enigma should initiate successfully"() {
         given:
         def enigma = new Enigma()
-
         expect:
         enigma != null
     }
@@ -19,9 +18,5 @@ class EnigmaTest extends Specification {
         expect:
         !enigma.rotors.isEmpty()
         enigma.rotors.size() == 3
-    }
-
-    def ""(){
-
     }
 }
