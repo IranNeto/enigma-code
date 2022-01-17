@@ -13,12 +13,22 @@ class RotorTest extends Specification {
         rotor != null
     }
 
-    def "Rotor should have a wireMapping"() {
+    def "Rotor should have a map"() {
         given:
         def rotor = new Rotor()
 
         expect:
-        rotor.wireMapping != null
-        rotor.wireMapping.size() == 26
+        rotor.map != null
+        rotor.map.size() == 26
+    }
+
+    def "configMap - Rotor should have a map"() {
+        given:
+        def rotor = new Rotor()
+        rotor.configMap()
+
+        expect:
+        rotor.map != null
+        rotor.map.size() == 26
     }
 }

@@ -1,34 +1,38 @@
 package org.iranneto.parts;
 
-import org.iranneto.util.RotorMappingCreator;
-
-import java.util.Map;
+import java.util.*;
 
 public class Rotor {
     private int index;
-    private Map<Integer, Integer> wireMapping = RotorMappingCreator.create();
+    private int[] map = new int[26];
 
     public Rotor(){
-        this.wireMapping = RotorMappingCreator.create();
+        configMap();
     }
 
     public int getIndex() {
         return index;
     }
 
-    public void setIndex(int index) {
-        this.index = index;
-    }
-
     public void increment(){
         this.index = this.index == 25 ? 0 : this.index + 1;
     }
 
-    public Map<Integer, Integer> getWireMapping() {
-        return wireMapping;
+    public int mapIndex(int index){
+        return this.map[index];
     }
 
-    public void setWireMapping(Map<Integer, Integer> wireMapping) {
-        this.wireMapping = wireMapping;
+    public void configMap() {
+        Set<Integer> indexMapped = new HashSet<>();
+        int index = 0;
+        while (index != 26) {
+            int result = (int) (Math.random() * Integer.MAX_VALUE) % 26;
+
+            if(!indexMapped.contains(result)){
+                indexMapped.add(result);
+                this.map[index] = result;
+                index++;
+            }
+        }
     }
 }
