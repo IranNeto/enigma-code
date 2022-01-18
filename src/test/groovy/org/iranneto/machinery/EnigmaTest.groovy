@@ -1,5 +1,6 @@
-package org.iranneto
+package org.iranneto.machinery
 
+import org.iranneto.machinery.Enigma
 import spock.lang.Specification
 
 class EnigmaTest extends Specification {

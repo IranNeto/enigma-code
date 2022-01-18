@@ -1,6 +1,6 @@
-package org.iranneto;
+package org.iranneto.machinery;
 
-import org.iranneto.parts.Rotor;
+import org.iranneto.machinery.parts.Rotor;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package org.iranneto.parts;
+package org.iranneto.machinery.parts;
 
 import java.util.HashSet;
 import java.util.Set;

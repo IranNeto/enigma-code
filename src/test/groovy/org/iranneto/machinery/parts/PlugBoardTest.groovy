@@ -1,6 +1,6 @@
-package org.iranneto
+package org.iranneto.machinery.parts
 
-import org.iranneto.parts.PlugBoard
+
 import spock.lang.Specification
 
 class PlugBoardTest extends Specification {
