@@ -8,7 +8,7 @@ public class PlugBoard {
     private int[] map = new int[26];
 
     public PlugBoard(){
-        IntStream.range(0,26).forEach(index -> this.map[index] = index);
+        configMap();
     }
 
     public int mapIndex(int index){
@@ -16,6 +16,8 @@ public class PlugBoard {
     }
 
     public void configMap() {
+        IntStream.range(0,26).forEach(index -> this.map[index] = index);
+
         Set<Integer> indexMapped = new HashSet<>();
         int count = 0;
         while (count != 10) {

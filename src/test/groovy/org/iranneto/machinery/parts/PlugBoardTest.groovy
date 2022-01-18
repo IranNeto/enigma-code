@@ -12,21 +12,13 @@ class PlugBoardTest extends Specification {
         plugBoard != null
     }
 
-    def "PlugBoard should have a map size 26"() {
+    def "PlugBoard should have a map size 26 and 6 values corresponding to the index"() {
         given:
         def plugBoard = new PlugBoard()
 
         expect:
         plugBoard.map != null
         plugBoard.map.size() == 26
-    }
-
-    def "configMap - PlugBoard should have a map size 26"() {
-        given:
-        def plugBoard = new PlugBoard()
-        plugBoard.configMap()
-
-        expect:
         plugBoard.map.findAll ( it -> it == plugBoard.map[it]).size() == 6
     }
 }

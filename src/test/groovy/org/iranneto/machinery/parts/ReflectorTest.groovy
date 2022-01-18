@@ -13,21 +13,9 @@ class ReflectorTest extends Specification {
         reflector != null
     }
 
-    def "buildMapping - should build default mapping"(){
-        given:
-        def reflector = new Reflector()
-
-        expect:
-        reflector.map[INDEX] == -1
-
-        where:
-        INDEX << (0..25)
-    }
-
     def "configMapping - should have 26 mapped reflections"(){
         given:
         def reflector = new Reflector()
-        reflector.configMapping()
 
         expect:
         reflector.map.size() == 26
@@ -38,7 +26,6 @@ class ReflectorTest extends Specification {
     def "reflect - mappings should reflect 13 bidirectional connections"(){
         given:
         def reflector = new Reflector()
-        reflector.configMapping()
 
         expect:
         INDEX == reflector.mapIndex(reflector.mapIndex(INDEX))

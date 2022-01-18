@@ -8,18 +8,16 @@ public class Reflector {
     private int[] map = new int[26];
 
     public Reflector() {
-        buildMapping();
+        configMapping();
     }
 
     public int mapIndex(int index){
         return this.map[index];
     }
 
-    private void buildMapping() {
-        IntStream.range(0, 26).forEach(index -> this.map[index] = -1);
-    }
-
     public void configMapping() {
+        IntStream.range(0, 26).forEach(index -> this.map[index] = -1);
+
         Set<Integer> indexMapped = new HashSet<>();
         int index = 0;
         while (index != 26) {

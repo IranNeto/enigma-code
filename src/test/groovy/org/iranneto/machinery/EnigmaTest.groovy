@@ -20,4 +20,12 @@ class EnigmaTest extends Specification {
         !enigma.rotors.isEmpty()
         enigma.rotors.size() == 3
     }
+
+    def "Enigma has set its 1 reflector"() {
+        given:
+        def enigma = new Enigma()
+
+        expect:
+        !enigma.reflector != null
+    }
 }
