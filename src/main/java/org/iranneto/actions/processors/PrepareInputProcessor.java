@@ -26,7 +26,7 @@ public class PrepareInputProcessor implements MachineryPartProcessor {
             output[i] = l.get(i);
         }
 
-        encryptMessageRequest.setInputIndexes(output.clone());
+        encryptMessageRequest.setInputIndexes(output);
     }
 
 }

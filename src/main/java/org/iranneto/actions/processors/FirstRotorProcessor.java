@@ -12,16 +12,15 @@ public class FirstRotorProcessor implements MachineryPartProcessor {
     public void process(EncryptMessageRequest encryptMessageRequest) {
         Enigma enigma = encryptMessageRequest.getEnigma();
         List<Rotor> rotors = enigma.getRotors();
-        int[] output = new int[encryptMessageRequest.getInputIndexes().length];
 
-        for (int i = 0; i < encryptMessageRequest.getInputIndexes().length; i++) {
-            //TODO This is ugly as hell - you should be ashamed!
-            output[i] = rotors.get(2).mapIndex(
-                    rotors.get(1).mapIndex(
-                            rotors.get(0).mapIndex(encryptMessageRequest.getInputIndexes()[i])
-                    )
-            );
-        }
+        //TODO This is ugly as hell - you should be ashamed!
+        int[] output = rotors.get(2).mapIndexArray(
+                rotors.get(1).mapIndexArray(
+                        rotors.get(0).mapIndexArray(encryptMessageRequest.getInputIndexes())
+                )
+        );
+
+        encryptMessageRequest.setInputIndexes(output);
     }
 
 }

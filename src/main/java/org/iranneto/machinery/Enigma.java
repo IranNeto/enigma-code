@@ -15,7 +15,7 @@ public class Enigma {
     private PlugBoard plugBoard = new PlugBoard();
 
     public Enigma(){
-        IntStream.range(0,3).forEach(loop -> rotors.add(new Rotor()));
+        IntStream.range(0,3).forEach(i -> rotors.add(new Rotor(i)));
     }
 
     public List<Rotor> getRotors() {
