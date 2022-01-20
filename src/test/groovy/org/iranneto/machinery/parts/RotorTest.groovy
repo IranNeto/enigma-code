@@ -1,8 +1,9 @@
 package org.iranneto.machinery.parts
 
-
 import spock.lang.Specification
-import static org.iranneto.ObjectMother.*
+
+import static org.iranneto.ObjectMother.MESSAGE_AS_INPUT_ARRAY
+import static org.iranneto.ObjectMother.randomRotorMap
 
 class RotorTest extends Specification {
 
@@ -25,13 +26,13 @@ class RotorTest extends Specification {
         rotor.order == 0
     }
 
-    def "mapIndexArray - should encrypt an input array"(){
+    def "mapIndexArray - should encrypt an input array"() {
         given:
         def rotor = new Rotor()
         def rotorMap = randomRotorMap
         //MESSAGE as inputArray
         def inputArray = MESSAGE_AS_INPUT_ARRAY
-        def expectedOutput = [2, 25, 12, 12, 0, 7, 25] as int[]
+        def expectedOutput = [2, 17, 8, 1, 13, 23, 19] as int[]
 
         and:
         rotor.map = rotorMap
@@ -40,4 +41,50 @@ class RotorTest extends Specification {
         rotor.mapIndexArray(inputArray) == expectedOutput
     }
 
+    def "increment - rotor index should be added +1 when index < 25"() {
+        given:
+        def rotor = new Rotor()
+        rotor.index = inputTestIndex
+        def expectedRotorIndex = rotor.index + 1
+
+        and:
+        rotor.increment()
+
+        expect:
+        rotor.index == expectedRotorIndex
+
+        where:
+        inputTestIndex << (0..24)
+    }
+
+    def "increment - rotor index should be back to 0 when index is 25"() {
+        given:
+        def rotor = new Rotor()
+        rotor.index = 25
+        def expectedRotorIndex = 0
+
+        and:
+        rotor.increment()
+
+        expect:
+        rotor.index == expectedRotorIndex
+    }
+
+    def "mapIndex - should increment a position after map an index"() {
+        given:
+        def rotor = new Rotor()
+        def indexBeforeMapIndex = rotor.index
+        rotor.map = randomRotorMap
+
+        and:
+        def indexAfterFirstMap = randomRotorMap[indexToBeMapped]
+        def indexMapped = rotor.mapIndex(indexToBeMapped)
+
+        expect:
+        rotor.index == indexBeforeMapIndex + 1;
+        indexAfterFirstMap == indexMapped
+
+        where:
+        indexToBeMapped << 9
+    }
 }

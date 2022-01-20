@@ -21,15 +21,15 @@ public class Rotor {
         return index;
     }
 
-    //TODO How add feature for increment rotor
-    //LinkedList?
-    //How to propagate to other rotors
-    public void increment() {
+    //TODO How to propagate to other rotors
+    private void increment() {
         this.index = this.index == 25 ? 0 : this.index + 1;
     }
 
-    private int mapIndex(int index) {
-        return this.map[index];
+    private int mapIndex(int indexToBeMapped) {
+        int indexWithOffset = (indexToBeMapped - this.index) >= 0 ? (indexToBeMapped - this.index) : (25 - this.index + indexToBeMapped) % 26;                                                                                          ;
+        increment();
+        return this.map[indexWithOffset];
     }
 
     public int[] mapIndexArray(int[] indexes) {
