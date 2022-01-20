@@ -1,5 +1,6 @@
 package org.iranneto.machinery.parts
 
+import org.iranneto.observer.RotorObserver
 import spock.lang.Specification
 
 import static org.iranneto.ObjectMother.MESSAGE_AS_INPUT_ARRAY
@@ -7,9 +8,11 @@ import static org.iranneto.ObjectMother.randomRotorMap
 
 class RotorTest extends Specification {
 
+    def defaultRotorObserver = new RotorObserver()
+
     def "Rotor should be created"() {
         given:
-        def rotor = new Rotor()
+        def rotor = new Rotor(defaultRotorObserver)
 
         expect:
         rotor != null
@@ -17,7 +20,7 @@ class RotorTest extends Specification {
 
     def "configMap - Rotor should have a map"() {
         given:
-        def rotor = new Rotor()
+        def rotor = new Rotor(defaultRotorObserver)
         rotor.configMap()
 
         expect:
@@ -28,7 +31,7 @@ class RotorTest extends Specification {
 
     def "mapIndexArray - should encrypt an input array"() {
         given:
-        def rotor = new Rotor()
+        def rotor = new Rotor(defaultRotorObserver)
         def rotorMap = randomRotorMap
         //MESSAGE as inputArray
         def inputArray = MESSAGE_AS_INPUT_ARRAY
@@ -43,7 +46,7 @@ class RotorTest extends Specification {
 
     def "increment - rotor index should be added +1 when index < 25"() {
         given:
-        def rotor = new Rotor()
+        def rotor = new Rotor(defaultRotorObserver)
         rotor.index = inputTestIndex
         def expectedRotorIndex = rotor.index + 1
 
@@ -59,7 +62,7 @@ class RotorTest extends Specification {
 
     def "increment - rotor index should be back to 0 when index is 25"() {
         given:
-        def rotor = new Rotor()
+        def rotor = new Rotor(defaultRotorObserver)
         rotor.index = 25
         def expectedRotorIndex = 0
 
@@ -72,7 +75,7 @@ class RotorTest extends Specification {
 
     def "mapIndex - should increment a position after map an index"() {
         given:
-        def rotor = new Rotor()
+        def rotor = new Rotor(defaultRotorObserver)
         def indexBeforeMapIndex = rotor.index
         rotor.map = randomRotorMap
 

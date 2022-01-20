@@ -3,6 +3,7 @@ package org.iranneto.machinery;
 import org.iranneto.machinery.parts.PlugBoard;
 import org.iranneto.machinery.parts.Reflector;
 import org.iranneto.machinery.parts.Rotor;
+import org.iranneto.observer.RotorObserver;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,8 @@ public class Enigma {
     private PlugBoard plugBoard = new PlugBoard();
 
     public Enigma(){
-        IntStream.range(0,3).forEach(i -> rotors.add(new Rotor(i)));
+        RotorObserver rotorObserver = new RotorObserver();
+        IntStream.range(0,3).forEach(i -> rotors.add(new Rotor(i, rotorObserver)));
     }
 
     public List<Rotor> getRotors() {
