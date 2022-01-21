@@ -3,8 +3,8 @@ package org.iranneto.machinery.parts
 import org.iranneto.observer.RotorObserver
 import spock.lang.Specification
 
-import static org.iranneto.ObjectMother.MESSAGE_AS_INPUT_ARRAY
-import static org.iranneto.ObjectMother.randomRotorMap
+import static org.iranneto.ObjectMother.INPUT_ARRAY_MESSAGE
+import static org.iranneto.ObjectMother.ROTOR_MAP
 
 class RotorTest extends Specification {
 
@@ -32,9 +32,9 @@ class RotorTest extends Specification {
     def "mapIndexArray - should encrypt an input array"() {
         given:
         def rotor = new Rotor(defaultRotorObserver)
-        def rotorMap = randomRotorMap
+        def rotorMap = ROTOR_MAP
         //MESSAGE as inputArray
-        def inputArray = MESSAGE_AS_INPUT_ARRAY
+        def inputArray = INPUT_ARRAY_MESSAGE
         def expectedOutput = [2, 25, 12, 12, 0, 7, 25] as int[]
 
         and:
@@ -76,10 +76,10 @@ class RotorTest extends Specification {
     def "mapIndex - should map the right index"() {
         given:
         def rotor = new Rotor(defaultRotorObserver)
-        rotor.map = randomRotorMap
+        rotor.map = ROTOR_MAP
 
         and:
-        def indexAfterFirstMap = randomRotorMap[indexToBeMapped]
+        def indexAfterFirstMap = ROTOR_MAP[indexToBeMapped]
         def indexMapped = rotor.mapIndex(indexToBeMapped)
 
         expect:
