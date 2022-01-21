@@ -13,7 +13,6 @@ public class FirstRotorProcessor implements MachineryPartProcessor {
         Enigma enigma = encryptMessageRequest.getEnigma();
         List<Rotor> rotors = enigma.getRotors();
 
-        //TODO This is ugly as hell - you should be ashamed!
         int[] output = rotors.get(2).mapIndexArray(
                 rotors.get(1).mapIndexArray(
                         rotors.get(0).mapIndexArray(encryptMessageRequest.getInputIndexes())

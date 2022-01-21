@@ -28,15 +28,16 @@ public class Rotor {
     }
 
     //TODO How to propagate to other rotors
+    // When is the moment to really +1
     private void increment() {
         if(this.index == 25) rotorObserver.saveLoopEnvet(this.order);
         this.index = this.index == 25 ? 0 : this.index + 1;
     }
+
     //TODO Only the rotor order == 1 that is supposed to increment when mapping an array everytime
     // Rotors 2 and 3 only increment after a loop of rotor 1
     private int mapIndex(int indexToBeMapped) {
         int indexWithOffset = (indexToBeMapped - this.index) >= 0 ? (indexToBeMapped - this.index) : (25 - this.index + indexToBeMapped) % 26;                                                                                          ;
-        increment();
         return this.map[indexWithOffset];
     }
 

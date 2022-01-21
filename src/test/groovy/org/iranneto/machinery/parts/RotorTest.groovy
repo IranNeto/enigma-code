@@ -35,7 +35,7 @@ class RotorTest extends Specification {
         def rotorMap = randomRotorMap
         //MESSAGE as inputArray
         def inputArray = MESSAGE_AS_INPUT_ARRAY
-        def expectedOutput = [2, 17, 8, 1, 13, 23, 19] as int[]
+        def expectedOutput = [2, 25, 12, 12, 0, 7, 25] as int[]
 
         and:
         rotor.map = rotorMap
@@ -73,10 +73,9 @@ class RotorTest extends Specification {
         rotor.index == expectedRotorIndex
     }
 
-    def "mapIndex - should increment a position after map an index"() {
+    def "mapIndex - should map the right index"() {
         given:
         def rotor = new Rotor(defaultRotorObserver)
-        def indexBeforeMapIndex = rotor.index
         rotor.map = randomRotorMap
 
         and:
@@ -84,7 +83,6 @@ class RotorTest extends Specification {
         def indexMapped = rotor.mapIndex(indexToBeMapped)
 
         expect:
-        rotor.index == indexBeforeMapIndex + 1;
         indexAfterFirstMap == indexMapped
 
         where:
