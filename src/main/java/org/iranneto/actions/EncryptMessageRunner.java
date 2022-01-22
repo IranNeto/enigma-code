@@ -15,11 +15,12 @@ public class EncryptMessageRunner {
     private List<MachineryPartProcessor> processors = new ArrayList<>();
 
     public EncryptMessageRunner(){
+        processors.add(new PrepareInputProcessor());
         processors.add(new FirstRotorProcessor());
-//        processors.add(new ReflectorProcessor());
-//        processors.add(new SecondRotorProcessor());
-//        processors.add(new PlugBoardProcessor());
-//        processors.add(new PrintMessageProcessor());
+        processors.add(new ReflectorProcessor());
+        processors.add(new SecondRotorProcessor());
+        processors.add(new PlugBoardProcessor());
+        processors.add(new PrintMessageProcessor());
 
     }
 
@@ -29,7 +30,7 @@ public class EncryptMessageRunner {
             processor.process(encryptMessageRequest);
         }
 
-        return null;
+        return encryptMessageRequest.getOutputText();
     }
 
 

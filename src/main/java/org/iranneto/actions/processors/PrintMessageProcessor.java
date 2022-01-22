@@ -18,6 +18,8 @@ public class PrintMessageProcessor implements MachineryPartProcessor {
                         .reduce("", (subtotal, element) -> subtotal + element
                         )
         );
+
+        System.out.println("Print message - Result: " + encryptMessageRequest.getOutputText());
     }
 
 }
