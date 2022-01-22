@@ -16,8 +16,8 @@ public class Reflector {
         return this.map[index];
     }
 
-    public int[] mapIndexArray(int[] indexes){
-        int[] tempIndexes = new int[indexes.length];
+    public Integer[] mapIndexArray(Integer[] indexes){
+        Integer[] tempIndexes = new Integer[indexes.length];
 
         IntStream.range(0, indexes.length).forEach(i -> {
             tempIndexes[i] = mapIndex(indexes[i]);

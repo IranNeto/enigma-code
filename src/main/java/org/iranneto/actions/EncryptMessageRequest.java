@@ -2,38 +2,40 @@ package org.iranneto.actions;
 
 import org.iranneto.machinery.Enigma;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import static org.iranneto.machinery.parts.Dictionary.dictionary;
-
 public class EncryptMessageRequest {
 
     private Enigma enigma;
-    private String textInput;
-    private int[] inputIndexes;
+    private String inputText;
+    private String outputText;
+    private Integer[] inputIndexes;
 
-    public EncryptMessageRequest(Enigma enigma, String textInput) {
+    public EncryptMessageRequest(Enigma enigma, String inputText) {
         this.enigma = enigma;
-        this.textInput = textInput;
-        this.inputIndexes = new int[textInput.length()];
+        this.inputText = inputText;
+        this.inputIndexes = new Integer[inputText.length()];
     }
 
     public Enigma getEnigma() {
         return this.enigma;
     }
 
-    public int[] getInputIndexes() {
+    public String getOutputText() {
+        return outputText;
+    }
+
+    public Integer[] getInputIndexes() {
         return this.inputIndexes;
     }
 
-    public void setInputIndexes(int[] inputIndexes) {
+    public void setInputIndexes(Integer[] inputIndexes) {
         this.inputIndexes = inputIndexes;
     }
 
-    public String getTextInput() {
-        return this.textInput;
+    public String getInputText() {
+        return this.inputText;
+    }
+
+    public void setOutputText(String outputText) {
+        this.outputText = outputText;
     }
 }

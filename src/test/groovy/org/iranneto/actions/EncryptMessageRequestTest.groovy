@@ -12,8 +12,8 @@ class EncryptMessageRequestTest extends Specification {
 
         expect:
         em.enigma != null
-        em.textInput != null
-        !em.textInput.isEmpty()
+        em.inputText != null
+        !em.inputText.isEmpty()
     }
 
 }

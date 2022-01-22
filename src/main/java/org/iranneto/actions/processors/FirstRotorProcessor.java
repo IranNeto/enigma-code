@@ -11,7 +11,7 @@ public class FirstRotorProcessor implements MachineryPartProcessor {
     public void process(EncryptMessageRequest encryptMessageRequest) {
         List<Rotor> rotors = encryptMessageRequest.getEnigma().getRotors();
 
-        int[] output = rotors.get(2).mapIndexArray(
+        Integer[] output = rotors.get(2).mapIndexArray(
                 rotors.get(1).mapIndexArray(
                         rotors.get(0).mapIndexArray(encryptMessageRequest.getInputIndexes())
                 )

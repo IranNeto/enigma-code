@@ -88,4 +88,20 @@ class RotorTest extends Specification {
         where:
         indexToBeMapped << 9
     }
+
+    def "backMapIndex - should backmap the right position"() {
+        given:
+        def rotor = new Rotor(defaultRotorObserver)
+        rotor.map = ROTOR_MAP
+
+        and:
+        def postitionAfterFirstBackMap = List.of(ROTOR_MAP as Integer[]).indexOf(positionToBeMapped)
+        def positionBackMapped = rotor.backMapIndex(positionToBeMapped)
+
+        expect:
+        postitionAfterFirstBackMap == positionBackMapped
+
+        where:
+        positionToBeMapped << 9
+    }
 }

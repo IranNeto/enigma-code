@@ -16,6 +16,7 @@ public class Enigma {
     private Reflector reflector = new Reflector();
 
     private PlugBoard plugBoard = new PlugBoard();
+
     public Enigma(){
         RotorObserver rotorObserver = new RotorObserver();
         IntStream.range(0,3).forEach(i -> rotors.add(new Rotor(i, rotorObserver)));

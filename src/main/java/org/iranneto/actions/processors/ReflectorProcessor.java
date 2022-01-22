@@ -7,7 +7,7 @@ public class ReflectorProcessor implements MachineryPartProcessor {
     @Override
     public void process(EncryptMessageRequest encryptMessageRequest) {
         Reflector reflector = encryptMessageRequest.getEnigma().getReflector();
-        int[] output = reflector.mapIndexArray(encryptMessageRequest.getInputIndexes());
+        Integer[] output = reflector.mapIndexArray(encryptMessageRequest.getInputIndexes());
         encryptMessageRequest.setInputIndexes(output);
     }
 

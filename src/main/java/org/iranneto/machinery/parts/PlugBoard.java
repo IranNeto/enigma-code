@@ -1,5 +1,6 @@
 package org.iranneto.machinery.parts;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.IntStream;
@@ -32,5 +33,17 @@ public class PlugBoard {
                 count++;
             }
         }
+    }
+
+    public Integer[] mapIndexArray(Integer[] indexes) {
+        Integer[] tempIndexes = new Integer[indexes.length];
+
+        IntStream.range(0, indexes.length).forEach(i -> {
+            tempIndexes[i] = mapIndex(indexes[i]);
+        });
+
+        System.out.println("Plugboard - Result: " + Arrays.toString(tempIndexes));
+        return tempIndexes;
+
     }
 }

@@ -9,7 +9,7 @@ import java.util.stream.IntStream;
 
 public class Rotor {
     private int index;
-    private int[] map = new int[26];
+    private Integer[] map = new Integer[26];
     private int order;
     private RotorObserver rotorObserver;
 
@@ -41,14 +41,29 @@ public class Rotor {
         return this.map[indexWithOffset];
     }
 
-    public int[] mapIndexArray(int[] indexes) {
-        int[] tempIndexes = new int[indexes.length];
+    public Integer[] mapIndexArray(Integer[] indexes) {
+        Integer[] tempIndexes = new Integer[indexes.length];
 
         IntStream.range(0, indexes.length).forEach(i -> {
             tempIndexes[i] = mapIndex(indexes[i]);
         });
 
-        System.out.println("Rotor " + order + " - Result: " + Arrays.toString(tempIndexes));
+        System.out.println("[FIRST] Rotor " + order + " - Result: " + Arrays.toString(tempIndexes));
+        return tempIndexes;
+    }
+
+    private int backMapIndex(int index){
+        return Arrays.asList(map).indexOf(index);
+    }
+
+    public Integer[] backMapIndexArray(Integer[] indexes){
+        Integer[] tempIndexes = new Integer[indexes.length];
+
+        IntStream.range(0, indexes.length).forEach(i -> {
+            tempIndexes[i] = backMapIndex(indexes[i]);
+        });
+
+        System.out.println("[SECOND] Rotor " + order + " - Result: " + Arrays.toString(tempIndexes));
         return tempIndexes;
     }
 
