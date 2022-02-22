@@ -11,7 +11,7 @@ class FirstRotorProcessorTest extends Specification {
     def "process - First rotor processor should encrypt index using the 3 rotors"() {
         given: 'A enigma machine with 3 rotor with same maps'
         def enigma = new Enigma()
-        enigma.rotors.forEach(rotor -> rotor.map = ROTOR_MAP)
+        enigma.rotorMechanism.rotors.forEach(rotor -> rotor.map = ROTOR_MAP)
 
         and: 'A encrypt message request with the enigma machine created and the message input'
         def firstRotorProcessor = new FirstRotorProcessor()
@@ -22,9 +22,9 @@ class FirstRotorProcessorTest extends Specification {
         firstRotorProcessor.process(encryptMessageRequest)
 
         expect: 'after should be expected'
-        encryptMessageRequest.inputIndexes == enigma.rotors.get(2).mapIndexArray(
-                enigma.rotors.get(1).mapIndexArray(
-                        enigma.rotors.get(0).mapIndexArray(INPUT_ARRAY_MESSAGE)
+        encryptMessageRequest.inputIndexes == enigma.rotorMechanism.rotors.get(2).mapIndexArray(
+                enigma.rotorMechanism.rotors.get(1).mapIndexArray(
+                        enigma.rotorMechanism.rotors.get(0).mapIndexArray(INPUT_ARRAY_MESSAGE)
                 )
         )
     }

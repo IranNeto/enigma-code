@@ -1,7 +1,5 @@
 package org.iranneto.machinery.parts;
 
-import org.iranneto.observer.RotorObserver;
-
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,15 +9,9 @@ public class Rotor {
     private int index;
     private Integer[] map = new Integer[26];
     private int order;
-    private RotorObserver rotorObserver;
 
-    public Rotor(RotorObserver rotorObserver){
-        this.rotorObserver = rotorObserver;
-    }
-
-    public Rotor(int order, RotorObserver rotorObserver) {
+    public Rotor(int order) {
         this.order = order;
-        this.rotorObserver = rotorObserver;
         configMap();
     }
 
@@ -30,14 +22,16 @@ public class Rotor {
     //TODO How to propagate to other rotors
     // When is the moment to really +1
     private void increment() {
-        if(this.index == 25) rotorObserver.saveLoopEnvet(this.order);
+//        if(this.index == 25) rotorMechanism.increment(this.index, this.order);
         this.index = this.index == 25 ? 0 : this.index + 1;
     }
 
     //TODO Only the rotor order == 1 that is supposed to increment when mapping an array everytime
     // Rotors 2 and 3 only increment after a loop of rotor 1
     private int mapIndex(int indexToBeMapped) {
-        int indexWithOffset = (indexToBeMapped - this.index) >= 0 ? (indexToBeMapped - this.index) : (25 - this.index + indexToBeMapped) % 26;                                                                                          ;
+        //TODO Move increment to RotorMechanism
+//        rotorMechanism.increment(this.order);
+        int indexWithOffset = (indexToBeMapped + this.index) <= 25 ? (indexToBeMapped + this.index) : 25 - (this.index + indexToBeMapped) ;                                                                                          ;
         return this.map[indexWithOffset];
     }
 

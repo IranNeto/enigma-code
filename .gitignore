@@ -2,7 +2,8 @@
 .idea/
 out/
 *.iml
-
+*.txt
+*.java-version
 # osx
 .DS_Store
 

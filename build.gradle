@@ -1,6 +1,16 @@
 plugins {
     id 'java'
     id 'groovy'
+    id 'application'
+}
+
+ext {
+    mainClass = 'org.iranneto.EnigmaCLI'
+}
+
+task execute(type:JavaExec) {
+    main = project.hasProperty("mainClass") ? project.getProperty("mainClass") : "NULL"
+    classpath = sourceSets.main.runtimeClasspath
 }
 
 group 'org.iranneto'

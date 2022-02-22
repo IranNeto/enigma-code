@@ -1,6 +1,7 @@
 package org.iranneto.machinery.parts
 
-import org.iranneto.observer.RotorObserver
+import org.iranneto.machinery.Enigma
+import spock.lang.Ignore
 import spock.lang.Specification
 
 import static org.iranneto.ObjectMother.INPUT_ARRAY_MESSAGE
@@ -8,11 +9,9 @@ import static org.iranneto.ObjectMother.ROTOR_MAP
 
 class RotorTest extends Specification {
 
-    def defaultRotorObserver = new RotorObserver()
-
     def "Rotor should be created"() {
         given:
-        def rotor = new Rotor(defaultRotorObserver)
+        def rotor = new Rotor(0)
 
         expect:
         rotor != null
@@ -20,7 +19,7 @@ class RotorTest extends Specification {
 
     def "configMap - Rotor should have a map"() {
         given:
-        def rotor = new Rotor(defaultRotorObserver)
+        def rotor = new Rotor(0)
         rotor.configMap()
 
         expect:
@@ -31,9 +30,8 @@ class RotorTest extends Specification {
 
     def "mapIndexArray - should encrypt an input array"() {
         given:
-        def rotor = new Rotor(defaultRotorObserver)
+        def rotor = new Rotor(0)
         def rotorMap = ROTOR_MAP
-        //MESSAGE as inputArray
         def inputArray = INPUT_ARRAY_MESSAGE
         def expectedOutput = [2, 25, 12, 12, 0, 7, 25] as int[]
 
@@ -44,9 +42,11 @@ class RotorTest extends Specification {
         rotor.mapIndexArray(inputArray) == expectedOutput
     }
 
+    //Test will be moved to RotorMechanismTest
+    @Ignore
     def "increment - rotor index should be added +1 when index < 25"() {
         given:
-        def rotor = new Rotor(defaultRotorObserver)
+        def rotor = new Rotor(0)
         rotor.index = inputTestIndex
         def expectedRotorIndex = rotor.index + 1
 
@@ -60,9 +60,11 @@ class RotorTest extends Specification {
         inputTestIndex << (0..24)
     }
 
+    //Test will be moved to RotorMechanismTest
+    @Ignore
     def "increment - rotor index should be back to 0 when index is 25"() {
         given:
-        def rotor = new Rotor(defaultRotorObserver)
+        def rotor = new Rotor(0)
         rotor.index = 25
         def expectedRotorIndex = 0
 
@@ -75,7 +77,7 @@ class RotorTest extends Specification {
 
     def "mapIndex - should map the right index"() {
         given:
-        def rotor = new Rotor(defaultRotorObserver)
+        def rotor = new Rotor(0)
         rotor.map = ROTOR_MAP
 
         and:
@@ -89,9 +91,29 @@ class RotorTest extends Specification {
         indexToBeMapped << 9
     }
 
+    //TODO Remove Ignore after RotorMechanism has increment function
+    @Ignore
+    def "mapIndex - should increment rotor before mapping a index value"() {
+        given:
+        def enigma = new Enigma()
+        def rotor = enigma.rotorMechanism.rotors.get(0)
+        rotor.map = ROTOR_MAP
+
+        and:
+        def expectedIndex = ROTOR_MAP[indexToBeMapped + 1]
+
+        expect:
+        rotor.mapIndex(indexToBeMapped) == expectedIndex
+
+        where:
+        indexToBeMapped << (0..24)
+    }
+
+    //TODO Remove Ignore after RotorMechanism has increment function
+    @Ignore
     def "backMapIndex - should backmap the right position"() {
         given:
-        def rotor = new Rotor(defaultRotorObserver)
+        def rotor = new Rotor(0)
         rotor.map = ROTOR_MAP
 
         and:

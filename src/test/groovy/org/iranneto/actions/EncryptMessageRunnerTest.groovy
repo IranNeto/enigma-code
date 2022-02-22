@@ -6,18 +6,21 @@ import spock.lang.Specification
 
 class EncryptMessageRunnerTest extends Specification {
 
-    def "runner - "(){
+    def "runner - should run all processors successfully"(){
         given:
         def enigma = new Enigma()
-        enigma.rotors.forEach(rotor -> rotor.map = ROTOR_MAP)
+        enigma.rotorMechanism.rotors.forEach(rotor -> rotor.map = ROTOR_MAP)
         enigma.reflector.map = REFLECTOR_MAP
         enigma.plugBoard.map = PLUGBOARD_MAP
 
-        and:
-        def encryptMessageRequest = new EncryptMessageRequest(enigma, 'MESSAGE')
-        def runner = new EncryptMessageRunner();
-
-        expect:
+        when:
+        def encryptMessageRequest = new EncryptMessageRequest(enigma,
+                'MESSAGE')
+        def runner = new EncryptMessageRunner()
         runner.run(encryptMessageRequest)
+
+        then:
+        noExceptionThrown()
+
     }
 }

@@ -17,8 +17,8 @@ class EnigmaTest extends Specification {
         def enigma = new Enigma()
 
         expect:
-        !enigma.rotors.isEmpty()
-        enigma.rotors.size() == 3
+        !enigma.rotorMechanism.rotors.isEmpty()
+        enigma.rotorMechanism.rotors.size() == 3
     }
 
     def "Enigma has set its 1 reflector"() {
@@ -27,5 +27,17 @@ class EnigmaTest extends Specification {
 
         expect:
         !enigma.reflector != null
+    }
+
+    def "Enigma has a plugboard"() {
+        given:
+        def enigma = new Enigma()
+
+        expect:
+        !enigma.plugBoard != null
+    }
+
+    def "Enigma should have a rotor mechanism"(){
+
     }
 }
