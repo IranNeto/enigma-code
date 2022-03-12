@@ -9,7 +9,6 @@ public class Rotor {
     private int index;
     private Integer[] map = new Integer[26];
     private int order;
-
     public Rotor(int order) {
         this.order = order;
         configMap();
@@ -21,17 +20,20 @@ public class Rotor {
 
     //TODO How to propagate to other rotors
     // When is the moment to really +1
+
     private void increment() {
 //        if(this.index == 25) rotorMechanism.increment(this.index, this.order);
         this.index = this.index == 25 ? 0 : this.index + 1;
     }
-
     //TODO Only the rotor order == 1 that is supposed to increment when mapping an array everytime
     // Rotors 2 and 3 only increment after a loop of rotor 1
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
     private int mapIndex(int indexToBeMapped) {
-        //TODO Move increment to RotorMechanism
-//        rotorMechanism.increment(this.order);
-        int indexWithOffset = (indexToBeMapped + this.index) <= 25 ? (indexToBeMapped + this.index) : 25 - (this.index + indexToBeMapped) ;                                                                                          ;
+        int indexWithOffset = (indexToBeMapped + this.index) <= 25 ? (indexToBeMapped + this.index) : 25 - (this.index + indexToBeMapped);                                                                                          ;
         return this.map[indexWithOffset];
     }
 

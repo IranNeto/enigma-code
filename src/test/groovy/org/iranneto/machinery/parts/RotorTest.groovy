@@ -42,39 +42,6 @@ class RotorTest extends Specification {
         rotor.mapIndexArray(inputArray) == expectedOutput
     }
 
-    //Test will be moved to RotorMechanismTest
-    @Ignore
-    def "increment - rotor index should be added +1 when index < 25"() {
-        given:
-        def rotor = new Rotor(0)
-        rotor.index = inputTestIndex
-        def expectedRotorIndex = rotor.index + 1
-
-        and:
-        rotor.increment()
-
-        expect:
-        rotor.index == expectedRotorIndex
-
-        where:
-        inputTestIndex << (0..24)
-    }
-
-    //Test will be moved to RotorMechanismTest
-    @Ignore
-    def "increment - rotor index should be back to 0 when index is 25"() {
-        given:
-        def rotor = new Rotor(0)
-        rotor.index = 25
-        def expectedRotorIndex = 0
-
-        and:
-        rotor.increment()
-
-        expect:
-        rotor.index == expectedRotorIndex
-    }
-
     def "mapIndex - should map the right index"() {
         given:
         def rotor = new Rotor(0)
@@ -91,16 +58,14 @@ class RotorTest extends Specification {
         indexToBeMapped << 9
     }
 
-    //TODO Remove Ignore after RotorMechanism has increment function
-    @Ignore
-    def "mapIndex - should increment rotor before mapping a index value"() {
+    def "mapIndex - should map a value"() {
         given:
         def enigma = new Enigma()
         def rotor = enigma.rotorMechanism.rotors.get(0)
         rotor.map = ROTOR_MAP
 
         and:
-        def expectedIndex = ROTOR_MAP[indexToBeMapped + 1]
+        def expectedIndex = ROTOR_MAP[indexToBeMapped]
 
         expect:
         rotor.mapIndex(indexToBeMapped) == expectedIndex
@@ -109,8 +74,24 @@ class RotorTest extends Specification {
         indexToBeMapped << (0..24)
     }
 
-    //TODO Remove Ignore after RotorMechanism has increment function
+    //TODO Add Test a large size of Input array message
+    //TODO Add a Test to validate the offset
     @Ignore
+    def "mapIndex - should map a value with index != 0"() {
+        given:
+        def enigma = new Enigma()
+        def rotor = enigma.rotorMechanism.rotors.get(0)
+        def indexToBeMapped = 15
+        rotor.index = 15
+        rotor.map = ROTOR_MAP
+
+        and:
+        def expectedIndex = ROTOR_MAP[indexToBeMapped]
+
+        expect:
+        rotor.mapIndex(indexToBeMapped) == expectedIndex
+    }
+
     def "backMapIndex - should backmap the right position"() {
         given:
         def rotor = new Rotor(0)

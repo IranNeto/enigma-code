@@ -17,12 +17,6 @@ public class Enigma {
 
     private PlugBoard plugBoard = new PlugBoard();
 
-    public Enigma(){
-        List<Rotor> rotors = new ArrayList<>();
-        IntStream.range(0,3).forEach(i -> rotors.add(new Rotor(i)));
-        rotorMechanism.setRotors(rotors);
-    }
-
     public Reflector getReflector() {
         return reflector;
     }
