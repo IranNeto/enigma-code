@@ -24,4 +24,4 @@ jobs:
       - name: Grant Permissions to gradlew
         run: chmod +x gradlew
       - name: Unit testing
-        run: gradle test --tests "*"
+        run: gradlew test --tests "*"
