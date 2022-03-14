@@ -23,7 +23,5 @@ jobs:
         uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
       - name: Grant Permissions to gradlew
         run: chmod +x gradlew
-      - name: Build
+      - name: Build & Unit Test
         run: ./gradlew clean build
-      - name: Build
-        run: ./gradlew test
