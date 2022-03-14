@@ -14,4 +14,6 @@ class ObjectMother {
     def static PLUGBOARD_MAP = [0, 1, 3, 2, 10, 6, 5, 17, 11, 9,
                                 4, 8, 12, 25, 20, 22, 21, 7, 18, 23,
                                 14, 16, 15, 19, 24, 13] as Integer[]
+
+    def static EXPECTED_OUTPUT = [2, 10, 3, 13, 25, 4, 5] as Integer[]
 }

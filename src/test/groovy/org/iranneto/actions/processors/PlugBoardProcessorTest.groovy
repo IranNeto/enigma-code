@@ -4,10 +4,7 @@ import org.iranneto.actions.EncryptMessageRequest
 import org.iranneto.machinery.Enigma
 import spock.lang.Specification
 
-import java.util.stream.IntStream
-
 import static org.iranneto.ObjectMother.*
-import static org.iranneto.ObjectMother.PLUGBOARD_MAP
 
 class PlugBoardProcessorTest extends Specification {
 
@@ -24,7 +21,7 @@ class PlugBoardProcessorTest extends Specification {
         def plugBoardProcessor = new PlugBoardProcessor()
 
         and:
-        def expectedOutput = [12, 10, 18, 18, 0, 5, 10]
+        def expectedOutput = EXPECTED_OUTPUT
         plugBoardProcessor.process(encryptMessageRequest)
 
         expect:
