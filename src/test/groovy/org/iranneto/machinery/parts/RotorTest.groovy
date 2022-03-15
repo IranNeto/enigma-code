@@ -67,13 +67,11 @@ class RotorTest extends Specification {
         rotor.map = ROTOR_MAP
 
         and:
+        def positionToBeMapped = 9
         def postitionAfterFirstBackMap = List.of(ROTOR_MAP as Integer[]).indexOf(positionToBeMapped)
-        def positionBackMapped = rotor.backMapIndex(positionToBeMapped)
+        def positionBackMapped = rotor.backMapIndex(positionToBeMapped, 0)
 
         expect:
         postitionAfterFirstBackMap == positionBackMapped
-
-        where:
-        positionToBeMapped << 9
     }
 }

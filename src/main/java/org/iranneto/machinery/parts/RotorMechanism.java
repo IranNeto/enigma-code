@@ -30,8 +30,4 @@ public class RotorMechanism {
             }
         }
     }
-
-    public void setRotors(List<Rotor> rotors) {
-        this.rotors = rotors;
-    }
 }

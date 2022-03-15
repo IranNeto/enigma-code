@@ -38,7 +38,6 @@ public class Rotor {
     public Integer[] mapIndexArray(Integer[] indexes) {
         Integer[] tempIndexes = new Integer[indexes.length];
 
-        int indexWithOffset = 0;
         IntStream.range(0, indexes.length).forEach(i -> {
             tempIndexes[i] = mapIndex(indexes[i], i);
         });
@@ -47,16 +46,16 @@ public class Rotor {
         return tempIndexes;
     }
 
-    private int backMapIndex(int index){
-        return Arrays.asList(map).indexOf(index);
+    private int backMapIndex(int index, int offset){
+        int indexWithOffset = (this.index + offset) % 26;
+        return (Arrays.asList(map).indexOf(index) + indexWithOffset) % 26;
     }
 
-    //TODO Check for logic change with offset
     public Integer[] backMapIndexArray(Integer[] indexes){
         Integer[] tempIndexes = new Integer[indexes.length];
 
         IntStream.range(0, indexes.length).forEach(i -> {
-            tempIndexes[i] = backMapIndex(indexes[i]);
+            tempIndexes[i] = backMapIndex(indexes[i], i);
         });
 
         System.out.println("[SECOND] Rotor " + order + " - Result: " + Arrays.toString(tempIndexes));

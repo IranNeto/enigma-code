@@ -21,7 +21,7 @@ class PlugBoardProcessorTest extends Specification {
         def plugBoardProcessor = new PlugBoardProcessor()
 
         and:
-        def expectedOutput = EXPECTED_OUTPUT
+        def expectedOutput = [12, 10, 18, 18, 0, 5, 10]
         plugBoardProcessor.process(encryptMessageRequest)
 
         expect:
