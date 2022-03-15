@@ -1,20 +1,21 @@
 package org.iranneto.actions.processors;
 
 import org.iranneto.actions.EncryptMessageRequest;
-import org.iranneto.machinery.parts.Rotor;
-
-import java.util.List;
+import org.iranneto.machinery.parts.RotorMechanism;
 
 public class FirstRotorProcessor implements MachineryPartProcessor {
 
     @Override
     public void process(EncryptMessageRequest encryptMessageRequest) {
-        List<Rotor> rotors = encryptMessageRequest.getEnigma().getRotorMechanism().getRotors();
+        RotorMechanism rotorMechanism = encryptMessageRequest.getEnigma().getRotorMechanism();
 
-        Integer[] output = rotors.get(2).mapIndexArray(
-                rotors.get(1).mapIndexArray(
-                        rotors.get(0).mapIndexArray(encryptMessageRequest.getInputIndexes())
-                )
+        Integer[] output = rotorMechanism.mapIndexArray(
+                rotorMechanism.mapIndexArray(
+                        rotorMechanism.mapIndexArray(encryptMessageRequest.getInputIndexes(),
+                                0),
+                        1
+                ),
+                2
         );
 
         encryptMessageRequest.setInputIndexes(output);

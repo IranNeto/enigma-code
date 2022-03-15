@@ -15,5 +15,7 @@ class ObjectMother {
                                 4, 8, 12, 25, 20, 22, 21, 7, 18, 23,
                                 14, 16, 15, 19, 24, 13] as Integer[]
 
-    def static EXPECTED_OUTPUT = [2, 10, 3, 13, 25, 4, 5] as Integer[]
+    def static EXPECTED_OUTPUT_ROTOR_0 = [2, 10, 3, 13, 25, 4, 5] as Integer[]
+    def static EXPECTED_OUTPUT_ROTOR_1 = [2, 25, 12, 12, 0, 7, 25] as Integer[]
+    def static EXPECTED_OUTPUT_ROTOR_2 = [2, 25, 12, 12, 0, 7, 25] as Integer[]
 }
