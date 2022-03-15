@@ -18,9 +18,6 @@ public class Rotor {
         return index;
     }
 
-    //TODO How to propagate to other rotors
-    // When is the moment to really +1
-
     private void increment() {
 //        if(this.index == 25) rotorMechanism.increment(this.index, this.order);
         this.index = this.index == 25 ? 0 : this.index + 1;
@@ -32,31 +29,33 @@ public class Rotor {
         this.index = index;
     }
 
-    private int mapIndex(int indexToBeMapped) {
-        int indexWithOffset = (indexToBeMapped + this.index) <= 25 ? (indexToBeMapped + this.index) : 25 - (this.index + indexToBeMapped);                                                                                          ;
-        return this.map[indexWithOffset];
+    private int mapIndex(int indexToBeMapped, int offset) {
+        int indexWithOffset = (this.index + offset) % 26;
+        int indexToBeMappedWithOffset = (indexToBeMapped + indexWithOffset) % 26;
+        return this.map[indexToBeMappedWithOffset];
     }
 
     public Integer[] mapIndexArray(Integer[] indexes) {
         Integer[] tempIndexes = new Integer[indexes.length];
 
         IntStream.range(0, indexes.length).forEach(i -> {
-            tempIndexes[i] = mapIndex(indexes[i]);
+            tempIndexes[i] = mapIndex(indexes[i], i);
         });
 
         System.out.println("[FIRST] Rotor " + order + " - Result: " + Arrays.toString(tempIndexes));
         return tempIndexes;
     }
 
-    private int backMapIndex(int index){
-        return Arrays.asList(map).indexOf(index);
+    private int backMapIndex(int index, int offset){
+        int indexWithOffset = (this.index + offset) % 26;
+        return (Arrays.asList(map).indexOf(index) + indexWithOffset) % 26;
     }
 
     public Integer[] backMapIndexArray(Integer[] indexes){
         Integer[] tempIndexes = new Integer[indexes.length];
 
         IntStream.range(0, indexes.length).forEach(i -> {
-            tempIndexes[i] = backMapIndex(indexes[i]);
+            tempIndexes[i] = backMapIndex(indexes[i], i);
         });
 
         System.out.println("[SECOND] Rotor " + order + " - Result: " + Arrays.toString(tempIndexes));

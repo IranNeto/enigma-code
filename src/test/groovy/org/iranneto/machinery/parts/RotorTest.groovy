@@ -1,11 +1,9 @@
 package org.iranneto.machinery.parts
 
-import org.iranneto.machinery.Enigma
-import spock.lang.Ignore
 import spock.lang.Specification
+import spock.lang.Unroll
 
-import static org.iranneto.ObjectMother.INPUT_ARRAY_MESSAGE
-import static org.iranneto.ObjectMother.ROTOR_MAP
+import static org.iranneto.ObjectMother.*
 
 class RotorTest extends Specification {
 
@@ -33,7 +31,7 @@ class RotorTest extends Specification {
         def rotor = new Rotor(0)
         def rotorMap = ROTOR_MAP
         def inputArray = INPUT_ARRAY_MESSAGE
-        def expectedOutput = [2, 25, 12, 12, 0, 7, 25] as int[]
+        def expectedOutput = EXPECTED_OUTPUT
 
         and:
         rotor.map = rotorMap
@@ -42,54 +40,25 @@ class RotorTest extends Specification {
         rotor.mapIndexArray(inputArray) == expectedOutput
     }
 
-    def "mapIndex - should map the right index"() {
+    @Unroll
+    def "mapIndex - should map the right index when #situation"() {
         given:
         def rotor = new Rotor(0)
         rotor.map = ROTOR_MAP
+        rotor.index = rotorIndex
 
-        and:
-        def indexAfterFirstMap = ROTOR_MAP[indexToBeMapped]
-        def indexMapped = rotor.mapIndex(indexToBeMapped)
+        when:
+        def indexMapped = rotor.mapIndex(indexToBeMapped, offset)
 
-        expect:
-        indexAfterFirstMap == indexMapped
-
-        where:
-        indexToBeMapped << 9
-    }
-
-    def "mapIndex - should map a value"() {
-        given:
-        def enigma = new Enigma()
-        def rotor = enigma.rotorMechanism.rotors.get(0)
-        rotor.map = ROTOR_MAP
-
-        and:
-        def expectedIndex = ROTOR_MAP[indexToBeMapped]
-
-        expect:
-        rotor.mapIndex(indexToBeMapped) == expectedIndex
+        then:
+        noExceptionThrown()
+        indexMapped == result
 
         where:
-        indexToBeMapped << (0..24)
-    }
-
-    //TODO Add Test a large size of Input array message
-    //TODO Add a Test to validate the offset
-    @Ignore
-    def "mapIndex - should map a value with index != 0"() {
-        given:
-        def enigma = new Enigma()
-        def rotor = enigma.rotorMechanism.rotors.get(0)
-        def indexToBeMapped = 15
-        rotor.index = 15
-        rotor.map = ROTOR_MAP
-
-        and:
-        def expectedIndex = ROTOR_MAP[indexToBeMapped]
-
-        expect:
-        rotor.mapIndex(indexToBeMapped) == expectedIndex
+        situation                    | indexToBeMapped | rotorIndex | offset || result
+        "rotor index + offset <= 25" | 9               | 0          | 3      || 2
+        "rotor index + offset > 25"  | 9               | 15         | 16     || 18
+        "offset is a large number"   | 9               | 0          | 31980  || 11
     }
 
     def "backMapIndex - should backmap the right position"() {
@@ -98,13 +67,11 @@ class RotorTest extends Specification {
         rotor.map = ROTOR_MAP
 
         and:
+        def positionToBeMapped = 9
         def postitionAfterFirstBackMap = List.of(ROTOR_MAP as Integer[]).indexOf(positionToBeMapped)
-        def positionBackMapped = rotor.backMapIndex(positionToBeMapped)
+        def positionBackMapped = rotor.backMapIndex(positionToBeMapped, 0)
 
         expect:
         postitionAfterFirstBackMap == positionBackMapped
-
-        where:
-        positionToBeMapped << 9
     }
 }

@@ -4,10 +4,7 @@ import org.iranneto.actions.EncryptMessageRequest
 import org.iranneto.machinery.Enigma
 import spock.lang.Specification
 
-import java.util.stream.IntStream
-
 import static org.iranneto.ObjectMother.*
-import static org.iranneto.ObjectMother.PLUGBOARD_MAP
 
 class PlugBoardProcessorTest extends Specification {
 
