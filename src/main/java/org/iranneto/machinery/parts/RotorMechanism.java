@@ -27,14 +27,13 @@ public class RotorMechanism {
             return this.getRotors().get(order).mapIndex(indexToBeMappedWithOffset);
         } else if (order == 1) {
             int firstRotorLap = 26 - rotors.get(0).getIndex();
-            int offset =  inputPosition < firstRotorLap ? 0 : 1 + (inputPosition - firstRotorLap) / 26;
-            int indexToBeMappedWithOffset = indexToBeMapped + (offset % 26);
+            int offset =  inputPosition < firstRotorLap ? 0 : 1 + inputPosition / 26;
+            int indexToBeMappedWithOffset = (indexToBeMapped + offset) % 26;
             return this.getRotors().get(order).mapIndex(indexToBeMappedWithOffset);
         } else {
-            int firstRotorLap = 26 - rotors.get(0).getIndex();
             int secondRotorLap = 26 - rotors.get(1).getIndex();
-            int offset = inputPosition < (firstRotorLap + secondRotorLap) ? 0 : 1 + (inputPosition - (firstRotorLap + secondRotorLap)) / 26;
-            int indexToBeMappedWithOffset = indexToBeMapped + (offset % 26);
+            int offset = inputPosition < secondRotorLap ? 0 : 1 + inputPosition / 26;
+            int indexToBeMappedWithOffset = (indexToBeMapped + offset) % 26;
             return this.getRotors().get(order).mapIndex(indexToBeMappedWithOffset);
         }
     }

@@ -48,10 +48,9 @@ class RotorMechanismTest extends Specification {
         given:
         def rotorMechanism = new RotorMechanism()
         rotorMechanism.rotors.forEach(rotor -> rotor.map = ROTOR_MAP)
-        def inputArray = INPUT_ARRAY_MESSAGE
 
         expect:
-        rotorMechanism.mapIndexArray(inputArray, order) == result
+        rotorMechanism.mapIndexArray(INPUT_ARRAY_MESSAGE, order) == result
 
         where:
         order || result
@@ -60,25 +59,22 @@ class RotorMechanismTest extends Specification {
         2     || EXPECTED_OUTPUT_ROTOR_2
     }
 
-    @Unroll
-    def "mapIndex - should map the right index when #situation"() {
+    def "mapIndexArray - should encrypt input message with rotor order #order when all rotors have index = 25"() {
         given:
-        def rotor = new Rotor(0)
-        rotor.map = ROTOR_MAP
-        rotor.index = rotorIndex
+        def rotorMechanism = new RotorMechanism()
+        IntStream.range(0, 3).forEach(i -> {
+            rotorMechanism.getRotors().get(i).index = 25
+            rotorMechanism.getRotors().get(i).map = ROTOR_MAP
+        })
 
-        when:
-        def indexMapped = rotor.mapIndex(indexToBeMapped, offset)
-
-        then:
-        noExceptionThrown()
-        indexMapped == result
+        expect:
+        rotorMechanism.mapIndexArray(INPUT_ARRAY_MESSAGE, order) == result
 
         where:
-        situation                    | indexToBeMapped | rotorIndex | offset || result
-        "rotor index + offset <= 25" | 9               | 0          | 3      || 2
-        "rotor index + offset > 25"  | 9               | 15         | 16     || 18
-        "offset is a large number"   | 9               | 0          | 31980  || 11
+        order || result
+        0     || [4, 25, 22, 3, 17, 5, 11] as Integer[]
+        1     || [2, 10, 22, 22, 23, 24, 10] as Integer[]
+        2     || [2, 10, 22, 22, 23, 24, 10] as Integer[]
     }
 
     def "backMapIndex - should backmap the right position"() {

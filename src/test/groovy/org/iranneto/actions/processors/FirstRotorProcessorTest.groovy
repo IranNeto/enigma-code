@@ -22,10 +22,13 @@ class FirstRotorProcessorTest extends Specification {
         firstRotorProcessor.process(encryptMessageRequest)
 
         expect: 'after should be expected'
-        encryptMessageRequest.inputIndexes == enigma.rotorMechanism.rotors.get(2).mapIndexArray(
-                enigma.rotorMechanism.rotors.get(1).mapIndexArray(
-                        enigma.rotorMechanism.rotors.get(0).mapIndexArray(INPUT_ARRAY_MESSAGE)
-                )
-        )
+        encryptMessageRequest.inputIndexes == enigma.rotorMechanism.mapIndexArray(
+                enigma.rotorMechanism.mapIndexArray(
+                        enigma.rotorMechanism.mapIndexArray(encryptMessageRequest.getInputIndexes(),
+                                0),
+                        1
+                ),
+                2
+        );
     }
 }
