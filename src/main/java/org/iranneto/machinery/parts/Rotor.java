@@ -29,21 +29,8 @@ public class Rotor {
         this.index = index;
     }
 
-    private int mapIndex(int indexToBeMapped, int offset) {
-        int indexWithOffset = (this.index + offset) % 26;
-        int indexToBeMappedWithOffset = (indexToBeMapped + indexWithOffset) % 26;
-        return this.map[indexToBeMappedWithOffset];
-    }
-
-    public Integer[] mapIndexArray(Integer[] indexes) {
-        Integer[] tempIndexes = new Integer[indexes.length];
-
-        IntStream.range(0, indexes.length).forEach(i -> {
-            tempIndexes[i] = mapIndex(indexes[i], i);
-        });
-
-        System.out.println("[FIRST] Rotor " + order + " - Result: " + Arrays.toString(tempIndexes));
-        return tempIndexes;
+    public int mapIndex(int position) {
+        return this.map[position];
     }
 
     private int backMapIndex(int index, int offset){
