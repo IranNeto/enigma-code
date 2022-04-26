@@ -1,125 +1,48 @@
 # Enigma
+This project aims to structure the Engima Machine behavior in an OO application using TDD, Java 11, Gradle, Spock
 
 This projects simulates how an Enigma machine works under the hood.
 
 ### A little background
-Enigma, was a cipher machine built by the Nazi Gemany to 
+Enigma, was a cipher machine built by the Nazi Germany to 
 encrypt/decrypt secret messages containing war instructions. Messages were sent by radio across all Europe to German
 troops but the communication could be intercepted by enemies. However, even in position of the message, the enemies
 couldn't interpret it. Only with another engima machine (with the right configuration) could interpret the message as it
 was. 
 
+Enigma Machine has definitely its place in human/computer history. The great german machine was widely used during WW2
+using a rotors' system with patterns being changed every day. Understand how it works and how Alan Turing managed to break
+its code is what moved this project.
+
 More information: https://en.wikipedia.org/wiki/Enigma_machine
 
-[comment]: <> (## Starting)
+### 📋 Pré-requisitos
 
-[comment]: <> (Essas instruções permitirão que você obtenha uma cópia do projeto em operação na sua máquina local para fins de desenvolvimento e teste.)
+1. Make sure you have Java 11 and Gradle installed in your machine
+2. Download or clone the project
+3. Make sure all tests are passing by running 
 
-[comment]: <> (Consulte **Implantação** para saber como implantar o projeto.)
+```
+./gradlew clean build test
+```
 
-[comment]: <> (### 📋 Pré-requisitos)
+## 📦 Architecture and Design choices
 
-[comment]: <> (De que coisas você precisa para instalar o software e como instalá-lo?)
+Coming soon...
 
-[comment]: <> (```)
+## 🖇️ Collaboration
 
-[comment]: <> (Dar exemplos)
+Coming soon...
 
-[comment]: <> (```)
+## 📄 Licença
 
-[comment]: <> (### 🔧 Instalação)
+Check out [LICENSE.md](https://github.com/usuario/projeto/licenca) para detalhes.
 
-[comment]: <> (Uma série de exemplos passo-a-passo que informam o que você deve executar para ter um ambiente de desenvolvimento em execução.)
+## 🎁 Expressões de gratidão
 
-[comment]: <> (Diga como essa etapa será:)
+* If this was helpful please make sure to star it 📢
 
-[comment]: <> (```)
+* Buy me a coffee or a beer - if you felt in your heart to _hehe_ 🍺
 
-[comment]: <> (Dar exemplos)
-
-[comment]: <> (```)
-
-[comment]: <> (E repita:)
-
-[comment]: <> (```)
-
-[comment]: <> (Até finalizar)
-
-[comment]: <> (```)
-
-[comment]: <> (Termine com um exemplo de como obter dados do sistema ou como usá-los para uma pequena demonstração.)
-
-[comment]: <> (## ⚙️ Executando os testes)
-
-[comment]: <> (Explicar como executar os testes automatizados para este sistema.)
-
-[comment]: <> (### 🔩 Analise os testes de ponta a ponta)
-
-[comment]: <> (Explique que eles verificam esses testes e porquê.)
-
-[comment]: <> (```)
-
-[comment]: <> (Dar exemplos)
-
-[comment]: <> (```)
-
-[comment]: <> (### ⌨️ E testes de estilo de codificação)
-
-[comment]: <> (Explique que eles verificam esses testes e porquê.)
-
-[comment]: <> (```)
-
-[comment]: <> (Dar exemplos)
-
-[comment]: <> (```)
-
-[comment]: <> (## 📦 Desenvolvimento)
-
-[comment]: <> (Adicione notas adicionais sobre como implantar isso em um sistema ativo)
-
-[comment]: <> (## 🛠️ Construído com)
-
-[comment]: <> (Mencione as ferramentas que você usou para criar seu projeto)
-
-[comment]: <> (* [Dropwizard]&#40;http://www.dropwizard.io/1.0.2/docs/&#41; - O framework web usado)
-
-[comment]: <> (* [Maven]&#40;https://maven.apache.org/&#41; - Gerente de Dependência)
-
-[comment]: <> (* [ROME]&#40;https://rometools.github.io/rome/&#41; - Usada para gerar RSS)
-
-[comment]: <> (## 🖇️ Colaborando)
-
-[comment]: <> (Por favor, leia o [COLABORACAO.md]&#40;https://gist.github.com/usuario/linkParaInfoSobreContribuicoes&#41; para obter detalhes sobre o nosso código de conduta e o processo para nos enviar pedidos de solicitação.)
-
-[comment]: <> (## 📌 Versão)
-
-[comment]: <> (Nós usamos [SemVer]&#40;http://semver.org/&#41; para controle de versão. Para as versões disponíveis, observe as [tags neste repositório]&#40;https://github.com/suas/tags/do/projeto&#41;.)
-
-[comment]: <> (## ✒️ Autores)
-
-[comment]: <> (Mencione todos aqueles que ajudaram a levantar o projeto desde o seu início)
-
-[comment]: <> (* **Um desenvolvedor** - *Trabalho Inicial* - [umdesenvolvedor]&#40;https://github.com/linkParaPerfil&#41;)
-
-[comment]: <> (* **Fulano De Tal** - *Documentação* - [fulanodetal]&#40;https://github.com/linkParaPerfil&#41;)
-
-[comment]: <> (Você também pode ver a lista de todos os [colaboradores]&#40;https://github.com/usuario/projeto/colaboradores&#41; que participaram deste projeto.)
-
-[comment]: <> (## 📄 Licença)
-
-[comment]: <> (Este projeto está sob a licença &#40;sua licença&#41; - veja o arquivo [LICENSE.md]&#40;https://github.com/usuario/projeto/licenca&#41; para detalhes.)
-
-[comment]: <> (## 🎁 Expressões de gratidão)
-
-[comment]: <> (* Conte a outras pessoas sobre este projeto 📢)
-
-[comment]: <> (* Convide alguém da equipe para uma cerveja 🍺)
-
-[comment]: <> (* Obrigado publicamente 🤓.)
-
-[comment]: <> (* etc.)
-
-
-[comment]: <> (---)
-
-[comment]: <> (⌨️ com ❤️ por [Armstrong Lohãns]&#40;https://gist.github.com/lohhans&#41; 😊)
+* Thank you 🤓.
+---
