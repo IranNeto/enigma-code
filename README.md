@@ -1,4 +1,4 @@
-# Enigma
+Enigma
 ----------
 
 This project aims to structure the Engima Machine behavior in an OO application using TDD, Java 11, Gradle, Spock
@@ -28,9 +28,21 @@ More information: https://en.wikipedia.org/wiki/Enigma_machine
 ./gradlew clean build test
 ```
 
-## 📦 Architecture and Design choices
+## 📦 Architecture
 
-Coming soon...
+Enigma is a mechanic machine with a cipher mechanism. So, it is formed by rotors and other parts that have specific behavior.
+To represent that in code, and to be easier to write code using TDD, I chose to create an object to every type of part.
+They are in `org.iranneto.machinery.parts`. The engima machine is also 'machinery' and that's why is inside the machinery package.
+
+However, only the parts themselves aren't enough to cipher. Given that we have a very defined operation order seems reasonable
+to use [Chain of Command pattern](https://www.baeldung.com/chain-of-responsibility-pattern). As it says it's easy to decouple sender and receivers
+(all sender and receivers are machinery parts) and if it was an actual project this structure would have the more flexibility 
+to add or switch a unit of the chain. They are in `org.iranneto.actions.processors`. The runner and the message passed along the chain
+are in `org.iranneto.actions`.
+
+[How the engima works underneath](https://www.youtube.com/watch?v=ybkkiGtJmkM&t=942s&pp=ugMICgJwdBABGAE%3D)
+
+Using TDD was able to cover >93% of the code base.
 
 ## 🖇️ Collaboration
 

@@ -19,6 +19,13 @@ public class RotorMechanism {
         this.rotors = rotors;
     }
 
+    /*
+    * 1. Calcule in how many shifts the previous rotor need to complete one lap (only rotor 1 and 2)
+    * 2. Comparing the number above with the input position we can shift 1 position to
+         the current rotor because it moved 1 position. What happens if the previous rotor
+         had given 2 laps? R: Then the inputPosition/26 would be responsible to sum this value.
+    * 3. In the end, sum the shifts to the index position to be mapped and return the result
+    */
     private int mapIndex(int indexToBeMapped, int inputPosition, int order) {
         if(order == 0) {
             int firstRotorIndex = this.rotors.get(0).getIndex();
@@ -50,15 +57,16 @@ public class RotorMechanism {
     }
 
     public void increment() {
-        boolean carry = false;
-        for (int i = 0; i < 3; i++) {
-            int currentIndex = rotors.get(i).getIndex();
-            if (currentIndex == 25) {
-                carry = true;
-                rotors.get(i).setIndex(0);
-            } else {
-                rotors.get(i).setIndex(carry || i == 0? currentIndex + 1 : currentIndex);
-            }
-        }
+        //TODO Calcule the index after rotor process
+//        boolean carry = false;
+//        for (int i = 0; i < 3; i++) {
+//            int currentIndex = rotors.get(i).getIndex();
+//            if (currentIndex == 25) {
+//                carry = true;
+//                rotors.get(i).setIndex(0);
+//            } else {
+//                rotors.get(i).setIndex(carry || i == 0? currentIndex + 1 : currentIndex);
+//            }
+//        }
     }
 }

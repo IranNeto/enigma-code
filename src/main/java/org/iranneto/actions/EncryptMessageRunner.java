@@ -14,6 +14,7 @@ public class EncryptMessageRunner {
         processors.add(new FirstRotorProcessor());
         processors.add(new ReflectorProcessor());
         processors.add(new SecondRotorProcessor());
+        processors.add(new IncrementRotorProcessor());
         processors.add(new PlugBoardProcessor());
         processors.add(new PrintMessageProcessor());
 

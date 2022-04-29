@@ -19,11 +19,8 @@ public class Rotor {
     }
 
     private void increment() {
-//        if(this.index == 25) rotorMechanism.increment(this.index, this.order);
         this.index = this.index == 25 ? 0 : this.index + 1;
     }
-    //TODO Only the rotor order == 1 that is supposed to increment when mapping an array everytime
-    // Rotors 2 and 3 only increment after a loop of rotor 1
 
     public void setIndex(int index) {
         this.index = index;
