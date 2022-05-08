@@ -18,10 +18,6 @@ public class Rotor {
         return index;
     }
 
-    private void increment() {
-        this.index = this.index == 25 ? 0 : this.index + 1;
-    }
-
     public void setIndex(int index) {
         this.index = index;
     }

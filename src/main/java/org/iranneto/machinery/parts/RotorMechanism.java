@@ -27,19 +27,20 @@ public class RotorMechanism {
     * 3. In the end, sum the shifts to the index position to be mapped and return the result
     */
     private int mapIndex(int indexToBeMapped, int inputPosition, int order) {
-        if(order == 0) {
+        if (order == 0) {
             int firstRotorIndex = this.rotors.get(0).getIndex();
             int indexWithOffset = (firstRotorIndex + inputPosition) % 26;
             int indexToBeMappedWithOffset = (indexToBeMapped + indexWithOffset) % 26;
             return this.getRotors().get(order).mapIndex(indexToBeMappedWithOffset);
         } else if (order == 1) {
             int firstRotorLap = 26 - rotors.get(0).getIndex();
-            int offset =  inputPosition < firstRotorLap ? 0 : 1 + inputPosition / 26;
+            int offset = getCompletedLaps(firstRotorLap, inputPosition, 1);
             int indexToBeMappedWithOffset = (indexToBeMapped + offset) % 26;
             return this.getRotors().get(order).mapIndex(indexToBeMappedWithOffset);
         } else {
+            int firstRotorLap = 26 - rotors.get(0).getIndex();
             int secondRotorLap = 26 - rotors.get(1).getIndex();
-            int offset = inputPosition < secondRotorLap ? 0 : 1 + inputPosition / 26;
+            int offset = getCompletedLaps(firstRotorLap * secondRotorLap, inputPosition, 2);
             int indexToBeMappedWithOffset = (indexToBeMapped + offset) % 26;
             return this.getRotors().get(order).mapIndex(indexToBeMappedWithOffset);
         }
@@ -56,17 +57,40 @@ public class RotorMechanism {
         return tempIndexes;
     }
 
-    public void increment() {
-        //TODO Calcule the index after rotor process
-//        boolean carry = false;
-//        for (int i = 0; i < 3; i++) {
-//            int currentIndex = rotors.get(i).getIndex();
-//            if (currentIndex == 25) {
-//                carry = true;
-//                rotors.get(i).setIndex(0);
-//            } else {
-//                rotors.get(i).setIndex(carry || i == 0? currentIndex + 1 : currentIndex);
-//            }
-//        }
+    public void increment(int inputIndexesSize) {
+        int initialPosition0 = rotors.get(0).getIndex();
+        int initialPosition1 = rotors.get(1).getIndex();
+        int initialPosition2 = rotors.get(2).getIndex();
+
+        for (int order = 2; order >= 0; order--) {
+            Rotor r = rotors.get(order);
+            int finalPosition;
+            if (order == 0) {
+                finalPosition = (initialPosition0 + inputIndexesSize);
+            } else if (order == 1) {
+                finalPosition = getCompletedLaps(
+                        (26 - initialPosition0),
+                        inputIndexesSize,
+                        order) + initialPosition1;
+            } else {
+                finalPosition = getCompletedLaps(
+                        (26 - initialPosition0) * (26 - initialPosition1),
+                        inputIndexesSize,
+                        order) + initialPosition2;
+            }
+
+            System.out.println("Index final do rotor " + order + ": " + finalPosition % 26);
+            r.setIndex(finalPosition % 26);
+        }
+    }
+
+    private int getCompletedLaps(int missingToFirstLap, int inputSize, int order){
+        if(missingToFirstLap > inputSize) {
+            return 0;
+        } else if(missingToFirstLap == inputSize) {
+            return 1;
+        } else {
+            return (int) (inputSize / Math.pow(26,order));
+        }
     }
 }
