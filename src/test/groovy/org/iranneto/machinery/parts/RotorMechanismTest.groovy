@@ -113,24 +113,6 @@ class RotorMechanismTest extends Specification {
         2     || EXPECTED_OUTPUT_ROTOR_2
     }
 
-//    def "mapIndexArray - should encrypt input message with rotor order #order when all rotors have index = 25"() {
-//        given:
-//        def rotorMechanism = new RotorMechanism()
-//        IntStream.range(0, 3).forEach(i -> {
-//            rotorMechanism.getRotors().get(i).index = 25
-//            rotorMechanism.getRotors().get(i).map = ROTOR_MAP
-//        })
-//
-//        expect:
-//        rotorMechanism.mapIndexArray(INPUT_ARRAY_MESSAGE, order) == result
-//
-//        where:
-//        order || result
-//        0     || [4, 25, 22, 3, 17, 5, 11] as Integer[]
-//        1     || [2, 10, 22, 22, 23, 24, 10] as Integer[]
-//        2     || [2, 10, 22, 22, 23, 24, 10] as Integer[]
-//    }
-
     def "backMapIndex - should backmap the right position"() {
         given:
         def rotor = new Rotor(0)

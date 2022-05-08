@@ -2,6 +2,13 @@ plugins {
     id 'java'
     id 'groovy'
     id 'application'
+    id 'jacoco'
+}
+
+jacocoTestReport {
+    reports {
+        csv.enabled true
+    }
 }
 
 ext {
