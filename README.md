@@ -52,9 +52,9 @@ Coming soon...
 
 ## 📄 Licença
 
-Check out [LICENSE.md](https://github.com/usuario/projeto/licenca) para detalhes.
+Check out [LICENSE.md](https://github.com/usuario/projeto/licenca) to see more details
 
-## 🎁 Expressões de gratidão
+## 🎁 Gratitude
 
 * If this was helpful please make sure to star it 📢
 
