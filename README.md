@@ -1,6 +1,6 @@
 Enigma
 ----------
-[![Coverage](.github/badges/jacoco.svg)
+![Coverage](.github/badges/jacoco.svg)
 
 
 This project aims to structure the Engima Machine behavior in an OO application using TDD, Java 11, Gradle, Spock
